@@ -1,0 +1,16 @@
+#@ dbs = REPLACEME
+---
+init_config:
+
+instances:
+#@ for db in dbs:
+  - host: #@ db['host']
+    port: #@ db['port']
+    username: #@ db['username']
+    password: #@ db['password']
+    dbname: #@ db['dbname']
+    ssl: true
+#@ if len(db['tags']) > 0:
+    tags: #@ db['tags']
+#@ end
+#@ end

@@ -1,0 +1,9 @@
+#@ dd_config = REPLACEME
+---
+api_key: #@ dd_config['api_key']
+
+hostname: #@ dd_config['hostname']
+
+#@ if len(dd_config['tags']) > 0:
+tags: #@ dd_config['tags']
+#@ end
