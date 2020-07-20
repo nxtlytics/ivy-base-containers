@@ -49,7 +49,7 @@ Container image for running Apache Airflow with a `CeleryExecutor`.
 $ docker build -t nxtlytics/apache-airflow:local-test .
 ```
 
-2. Create a `dev.env` file using the example below:
+2. Create a `dev.env` file using the snippet below as an example:
 
 ```shell
 # postgres container
