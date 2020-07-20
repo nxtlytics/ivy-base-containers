@@ -1,0 +1,65 @@
+version: '3.8'
+services:
+    redis:
+        image: 'redis:5.0.5'
+        # command: redis-server --requirepass redispass
+
+    postgres:
+        image: postgres:11.7
+        env_file:
+          - dev.env
+        # Uncomment these lines to persist data on the local filesystem.
+        #   - PGDATA=/var/lib/postgresql/data/pgdata
+        # volumes:
+        #   - ./pgdata:/var/lib/postgresql/data/pgdata
+
+    webserver:
+        image: nxtlytics/apache-airflow:local-test
+        restart: always
+        depends_on:
+          - postgres
+          - redis
+        environment:
+          - AIRFLOW_MODE=webserver
+          - AIRFLOW_AUTHENTICATE=False
+        env_file:
+          - dev.env
+        ports:
+           - "8080:8080"
+        healthcheck:
+            test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+            interval: 30s
+            timeout: 30s
+            retries: 3
+
+    flower:
+        image: nxtlytics/apache-airflow:local-test
+        restart: always
+        depends_on:
+          - redis
+        environment:
+          - AIRFLOW_MODE=flower
+        env_file:
+          - dev.env
+        ports:
+          - "5555:5555"
+
+    scheduler:
+        image: nxtlytics/apache-airflow:local-test
+        restart: always
+        depends_on:
+          - webserver
+        environment:
+          - AIRFLOW_MODE=scheduler
+        env_file:
+          - dev.env
+
+    worker:
+        image: nxtlytics/apache-airflow:local-test
+        restart: always
+        depends_on:
+          - scheduler
+        environment:
+          - AIRFLOW_MODE=worker
+        env_file:
+          - dev.env

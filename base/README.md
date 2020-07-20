@@ -6,7 +6,7 @@ A ubuntu-based common docker image to be used for all NXTlytics Docker container
 
 In your `dockerfile`:
 ```
-FROM nxtlytics/docker-base:<pick a tag from hub.docker.com>
+FROM nxtlytics/base:<pick a tag from hub.docker.com>
 ```
 
 ## What *should* I use this for?

@@ -6,7 +6,7 @@ A ubuntu-based Python 3.8 base container
 
 In your `dockerfile`:
 ```
-FROM nxtlytics/docker-base-python38:<pick a tag from hub.docker.com>
+FROM nxtlytics/python38:<pick a tag from hub.docker.com>
 
 # Add your source files
 ADD app/ /app

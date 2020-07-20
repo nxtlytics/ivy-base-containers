@@ -1,31 +1,28 @@
-# docker-base-node12
+# docker-base-python37
 
-A ubuntu-based Node.js 12 base container
+A ubuntu-based Python 3.7 base container
 
 ## How do I use this?
 
 In your `dockerfile`:
 ```
-FROM nxtlytics/node12:<pick a tag from hub.docker.com>
+FROM nxtlytics/python37:<pick a tag from hub.docker.com>
 
 # Add your source files
-ADD .
+ADD app/ /app
 
-# Install npm dependencies
-RUN npm install
+# Install pipenv dependencies
+RUN pipenv install
 
-# Babelify your sauce
-RUN npm build
-
-# Set command
-CMD node /app/dist/index.js
+# Set command, make sure your main app is named `main.py`
+CMD pipenv run /app/main.py
 ```
 
 ## What *should* I use this for?
 
 Use this as a starting point for: 
 
-- Applications using Node.js 12 as their runtime
+- Applications using Python 3.7 as their runtime
 
 ## What should I not use this for?
 

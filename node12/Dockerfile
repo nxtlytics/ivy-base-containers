@@ -1,4 +1,4 @@
-FROM nxtlytics/docker-base:<TBD>
+FROM nxtlytics/base:<TBD>
 
 # Install tools
 RUN curl -sL https://deb.nodesource.com/setup_12.x -o /tmp/nodesource_setup.sh && \
