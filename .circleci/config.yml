@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-7
+  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-8
 
 workflows:
   version: 2
