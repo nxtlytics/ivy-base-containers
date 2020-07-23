@@ -1,0 +1,91 @@
+version: 2.1
+
+orbs:
+  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-4
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - ivy-circleci-orb/build_docker:
+          name: base
+          working_directory: base/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: datadog-agent
+          requires:
+            - base
+          working_directory: datadog-agent/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: node12
+          requires:
+            - base
+          working_directory: node12/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: python37
+          requires:
+            - base
+          working_directory: python37/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: python38
+          requires:
+            - base
+          working_directory: python38/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: apache-airflow
+          requires:
+            - python37
+          working_directory: apache-airflow/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jupyterhub-singleuser-base
+          requires:
+            - python38
+          working_directory: jupyterhub-singleuser-base/
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
