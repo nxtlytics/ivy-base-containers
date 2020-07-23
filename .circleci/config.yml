@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-4
+  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-5
 
 workflows:
   version: 2
@@ -10,6 +10,7 @@ workflows:
       - ivy-circleci-orb/build_docker:
           name: base
           working_directory: base/
+          container_name: base
           simple_docker_tag: yes
           context: ivy
           filters:
@@ -23,6 +24,7 @@ workflows:
           requires:
             - base
           working_directory: datadog-agent/
+          container_name: datadog-agent
           simple_docker_tag: yes
           context: ivy
           filters:
@@ -36,6 +38,7 @@ workflows:
           requires:
             - base
           working_directory: node12/
+          container_name: node12
           simple_docker_tag: yes
           context: ivy
           filters:
@@ -49,6 +52,7 @@ workflows:
           requires:
             - base
           working_directory: python37/
+          container_name: python37
           simple_docker_tag: yes
           context: ivy
           filters:
@@ -62,6 +66,7 @@ workflows:
           requires:
             - base
           working_directory: python38/
+          container_name: python38
           simple_docker_tag: yes
           context: ivy
           filters:
@@ -75,6 +80,7 @@ workflows:
           requires:
             - python37
           working_directory: apache-airflow/
+          container_name: apache-airflow
           simple_docker_tag: yes
           context: ivy
           filters:
@@ -88,6 +94,7 @@ workflows:
           requires:
             - python38
           working_directory: jupyterhub-singleuser-base/
+          container_name: jupyterhub-singleuser-base
           simple_docker_tag: yes
           context: ivy
           filters:
