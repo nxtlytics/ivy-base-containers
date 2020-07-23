@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-6
+  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@dev:public-7
 
 workflows:
   version: 2
@@ -11,7 +11,7 @@ workflows:
           name: base
           working_directory: base/
           container_name: base
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
@@ -25,7 +25,7 @@ workflows:
             - base
           working_directory: datadog-agent/
           container_name: datadog-agent
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
@@ -39,7 +39,7 @@ workflows:
             - base
           working_directory: node12/
           container_name: node12
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
@@ -53,7 +53,7 @@ workflows:
             - base
           working_directory: python37/
           container_name: python37
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
@@ -67,7 +67,7 @@ workflows:
             - base
           working_directory: python38/
           container_name: python38
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
@@ -81,7 +81,7 @@ workflows:
             - python37
           working_directory: apache-airflow/
           container_name: apache-airflow
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
@@ -95,7 +95,7 @@ workflows:
             - python38
           working_directory: jupyterhub-singleuser-base/
           container_name: jupyterhub-singleuser-base
-          simple_docker_tag: yes
+          simple_docker_tag: true
           context: ivy
           filters:
             branches:
