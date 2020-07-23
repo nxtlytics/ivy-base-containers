@@ -1,4 +1,4 @@
-FROM nxtlytics/base:<TBD>
+FROM nxtlytics/base:v0.0.1-test
 
 # Ensure system is up to date and install tools
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/bionic-proposed.list && \
@@ -15,6 +15,3 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main 
     python3.7 -m pip install pipenv
 
 ADD .VERSION /opt/ivy/meta/PYTHON37_VERSION
-
-# Setup Nexus pip repository (see docker-base image for options)
-RUN bash /opt/ivy/setup-nexus.sh --pip
