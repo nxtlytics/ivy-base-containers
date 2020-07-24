@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.1-test
+FROM nxtlytics/base:v0.0.1
 
 # Ensure system is up to date and install tools
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/bionic-proposed.list && \

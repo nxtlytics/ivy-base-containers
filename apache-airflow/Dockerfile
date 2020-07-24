@@ -1,4 +1,4 @@
-FROM nxtlytics/python37:v0.0.1-test
+FROM nxtlytics/python37:v0.0.1
 
 # Never prompt the user for choices on installation/configuration of packages
 ENV DEBIAN_FRONTEND noninteractive
