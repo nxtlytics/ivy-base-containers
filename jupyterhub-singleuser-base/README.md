@@ -2,6 +2,8 @@
 
 Start new jupyterhub single user container images from this one
 
+[DockerHUB repository](https://hub.docker.com/r/nxtlytics/jupyterhub-singleuser-base)
+
 # Notes
 
 - Locking to `google-drive-ocamlfuse=0.7.21-0ubuntu1~ubuntu18.04.1` to avoid issues with config file format changes

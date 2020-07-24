@@ -1,5 +1,7 @@
 # DataDog Agent for monitoring managed services
 
+[DockerHUB repository](https://hub.docker.com/r/nxtlytics/datadog-agent)
+
 ## Documentation available [here](./docs/)
 
 ## Example: How to run the container

@@ -2,9 +2,11 @@
 
 A ubuntu-based common docker image to be used for all NXTlytics Docker containers
 
+[DockerHUB repository](https://hub.docker.com/r/nxtlytics/base)
+
 ## How do I use this?
 
-In your `dockerfile`:
+In your `Dockerfile`:
 ```
 FROM nxtlytics/base:<pick a tag from hub.docker.com>
 ```
