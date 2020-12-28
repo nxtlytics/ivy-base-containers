@@ -4,7 +4,7 @@
 # - Base APT repos for Nexus
 # Ensure this image is built with --squash to reduce layer bloat!
 
-FROM ubuntu:bionic-20200630
+FROM ubuntu:focal-20201106
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8

@@ -76,6 +76,20 @@ workflows:
             tags:
               only: /^v.*/
       - ivy-circleci-orb/build_docker:
+          name: python39
+          requires:
+            - base
+          working_directory: python39/
+          container_name: python39
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
           name: apache-airflow
           requires:
             - python37
