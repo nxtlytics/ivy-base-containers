@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.1
+FROM nxtlytics/base:v0.0.2
 
 # Ensure system is up to date and install tools
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/bionic-proposed.list && \
@@ -12,6 +12,7 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main 
     curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py && \
     python3.7 /tmp/get-pip.py && \
     hash -r && \
-    python3.7 -m pip install pipenv
+    python3.7 -m pip install pipenv && \
+    python3.7 -m pip install poetry
 
 ADD .VERSION /opt/ivy/meta/PYTHON37_VERSION
