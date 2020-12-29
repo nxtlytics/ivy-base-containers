@@ -2,8 +2,10 @@ FROM nxtlytics/base:v0.0.2
 
 # Ensure system is up to date and install tools
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/bionic-proposed.list && \
-    apt-get update && \
-    apt-get install -y \
+    export DEBIAN_FRONTEND=noninteractive && \
+    add-apt-repository ppa:deadsnakes/ppa && \
+    apt update && \
+    apt install -y \
         git \
         python3.7 \
         python3.7-venv \

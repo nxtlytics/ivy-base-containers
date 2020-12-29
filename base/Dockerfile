@@ -16,7 +16,8 @@ RUN apt-get update && \
         iputils-ping \
         curl \
         wget \
-        vim-common
+        vim-common \
+        software-properties-common
 
 # Make directory for utilities and applications
 RUN mkdir /opt/ivy && mkdir /app
