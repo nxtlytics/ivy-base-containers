@@ -1,9 +1,9 @@
-FROM nxtlytics/base:v0.0.3
+FROM nxtlytics/base:v0.0.4-test1
 
 # Ensure system is up to date and install tools
-RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/bionic-proposed.list && \
-    apt-get update && \
-    apt-get install -y \
+RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/focal-proposed.list && \
+    apt update && \
+    apt install -y \
         git \
         python3.9 \
         python3.9-venv \

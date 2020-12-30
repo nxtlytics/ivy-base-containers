@@ -1,8 +1,7 @@
-FROM nxtlytics/base:v0.0.3
+FROM nxtlytics/base:v0.0.4-test1
 
 # Ensure system is up to date and install tools
-RUN echo 'deb http://archive.ubuntu.com/ubuntu/ bionic-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/bionic-proposed.list && \
-    export DEBIAN_FRONTEND=noninteractive && \
+RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/focal-proposed.list && \
     add-apt-repository ppa:deadsnakes/ppa && \
     apt update && \
     apt install -y \

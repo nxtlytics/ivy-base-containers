@@ -1,8 +1,7 @@
-FROM nxtlytics/python38:v0.0.3
+FROM nxtlytics/python38:v0.0.4-test1
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
-  && export DEBIAN_FRONTEND=noninteractive \
   && add-apt-repository ppa:alessandro-strada/ppa \
   && apt update \
   && apt install -y google-drive-ocamlfuse=0.7.23-0ubuntu1 fuse curl jq \

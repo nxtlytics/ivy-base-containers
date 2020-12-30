@@ -1,10 +1,6 @@
-FROM nxtlytics/python37:v0.0.3
-
-# Never prompt the user for choices on installation/configuration of packages
-ENV DEBIAN_FRONTEND noninteractive
+FROM nxtlytics/python37:v0.0.4-test1
 
 # Airflow
-ARG AIRFLOW_VERSION=1.10.10
 ENV AIRFLOW_USER_HOME=/usr/local/airflow
 ENV AIRFLOW_HOME=${AIRFLOW_USER_HOME}
 WORKDIR ${AIRFLOW_USER_HOME}
@@ -15,9 +11,6 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV LC_CTYPE en_US.UTF-8
 ENV LC_MESSAGES en_US.UTF-8
-
-# Disable noisy "Handling signal" log messages:
-# ENV GUNICORN_CMD_ARGS --log-level WARNING
 
 COPY Pipfile* ${AIRFLOW_USER_HOME}/
 RUN set -ex \

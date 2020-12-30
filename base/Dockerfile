@@ -6,13 +6,14 @@
 
 FROM ubuntu:focal-20201106
 
+ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 ENV TERM=linux
 
 # Ensure system is up to date and install nice utilities to have
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt update && \
+    apt install -y \
         iputils-ping \
         curl \
         wget \
