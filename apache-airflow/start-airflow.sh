@@ -9,7 +9,7 @@ TRY_LOOP="20"
 
 # Global defaults and back-compat
 : "${AIRFLOW_HOME:="/usr/local/airflow"}"
-: "${AIRFLOW__CORE__FERNET_KEY:=${FERNET_KEY:=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")}}"
+: "${AIRFLOW__CORE__FERNET_KEY:=${FERNET_KEY:=$(openssl rand -base64 32)}}"
 : "${AIRFLOW__CORE__EXECUTOR:=${EXECUTOR:-Sequential}Executor}"
 
 # Load DAGs examples (default: Yes)
@@ -21,8 +21,7 @@ export \
   AIRFLOW_HOME \
   AIRFLOW__CORE__EXECUTOR \
   AIRFLOW__CORE__FERNET_KEY \
-  AIRFLOW__CORE__LOAD_EXAMPLES \
-  AIRFLOW__CORE__LOGGING_CONFIG_CLASS
+  AIRFLOW__CORE__LOAD_EXAMPLES
 
 wait_for_port() {
   local name="${1}" host="${2}" port="${3}"
@@ -116,17 +115,20 @@ case "$1" in
   webserver)
     if [[ "${AIRFLOW__WEBSERVER__AUTHENTICATE}" == 'True' ]]; then
       export \
-        AIRFLOW__WEBSERVER__AUTHENTICATE \
         AIRFLOW__WEBSERVER__AUTH_BACKEND \
         AIRFLOW__GOOGLE__CLIENT_ID \
         AIRFLOW__GOOGLE__CLIENT_SECRET \
         AIRFLOW__GOOGLE__OAUTH_CALLBACK_ROUTE \
         AIRFLOW__GOOGLE__DOMAIN
+    else
+      export \
+        AIRFLOW__API__AUTH_BACKEND="airflow.api.auth.backend.default" \
+        AIRFLOW__WEBSERVER__RBAC="False"
     fi
-    airflow initdb
+    airflow db init
     exec airflow webserver
     ;;
-  worker|scheduler)
+  scheduler)
     # Give the webserver time to run initdb.
     sleep 10
     if [[ "${STATSD_PREFIX}" == 'you-need-to-specify-a-prefix-for-this-airflow-instance' ]]; then
@@ -141,9 +143,24 @@ case "$1" in
     export AIRFLOW__CORE__HOSTNAME_CALLABLE
     exec airflow "$@"
     ;;
+  worker)
+    # Give the webserver time to run initdb.
+    sleep 10
+    if [[ "${STATSD_PREFIX}" == 'you-need-to-specify-a-prefix-for-this-airflow-instance' ]]; then
+      echo "I will not configure STATSD"
+    else
+      export AIRFLOW__SCHEDULER__STATSD_ON=True
+      export AIRFLOW__SCHEDULER__STATSD_HOST="${STATSD_HOST}"
+      export AIRFLOW__SCHEDULER__STATSD_PORT="${STATSD_PORT}"
+      export AIRFLOW__SCHEDULER__STATSD_PREFIX="${STATSD_PREFIX}"
+    fi
+
+    export AIRFLOW__CORE__HOSTNAME_CALLABLE
+    exec airflow celery "$@"
+    ;;
   flower)
     sleep 10
-    exec airflow "$@"
+    exec airflow celery "$@"
     ;;
   version)
     exec airflow "$@"

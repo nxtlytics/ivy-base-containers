@@ -29,8 +29,7 @@ Container image for running Apache Airflow with a `CeleryExecutor`.
 |         `GOOGLE_DOMAINS` | -                                                                                      |                                                                                                    Comma Separated G Suite Domains to allow login |
 |             `SENTRY_DSN` | -                                                                                      |                                                                                                                     Sentry Data Source Name (DSN) |
 |     `SENTRY_ENVIRONMENT` | `develop`                                                                              |                                                                                             Sentry environment for this project to send errors as |
-|   `LOGGING_CONFIG_CLASS` | `airflow.config_templates.`</br>`airflow_local_settings.`</br>`DEFAULT_LOGGING_CONFIG` |                          Logging class Specify the class that will specify the logging configuration This class has to be on the python classpath |
-|      `HOSTNAME_CALLABLE` | `socket:getfqdn`                                                                       |                                     Hostname by providing a path to a callable, which will resolve the hostname. The format is `package:function` |
+|      `HOSTNAME_CALLABLE` | `socket.getfqdn`                                                                       |                                     Hostname by providing a path to a callable, which will resolve the hostname. The format is `package:function` |
 |                   `REPO` | -                                                                                      |                                                                                                            git repository `git-sync.sh` will pull |
 |                 `BRANCH` | -                                                                                      |                                                                                                     git repository branch `git-sync.sh` will pull |
 |                    `DIR` | -                                                                                      |                                                                                    local directory where `git-sync.sh` will clone a repository to |
@@ -68,7 +67,7 @@ AIRFLOW__CORE__DB_NAME=airflow
 REDIS_HOST=redis
 REDIS_DBNUM=1
 LOAD_EX=n
-FERNET_KEY= # the result of $(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")
+FERNET_KEY= # the result of $(openssl rand -base64 32)
 REPO=git@github.com:your-org/repository-where-dags-live.git
 BRANCH=some-branch-with-dags
 DIR=/usr/local/airflow/dags

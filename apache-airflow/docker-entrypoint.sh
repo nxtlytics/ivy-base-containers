@@ -26,8 +26,7 @@ export AIRFLOW__GOOGLE__DOMAIN="${GOOGLE_DOMAINS:-example1.com,example2.com}"
 export SENTRY_DSN="${SENTRY_DSN:-you-need-to-specify-a-sentry-dsn}"
 export AIRFLOW__SENTRY__SENTRY_DSN="${SENTRY_DSN}"
 export SENTRY_ENVIRONMENT="${SENTRY_ENVIRONMENT:-develop}"
-export AIRFLOW__CORE__LOGGING_CONFIG_CLASS="${LOGGING_CONFIG_CLASS:-airflow.config_templates.airflow_local_settings.DEFAULT_LOGGING_CONFIG}"
-export AIRFLOW__CORE__HOSTNAME_CALLABLE="${HOSTNAME_CALLABLE:-socket:getfqdn}"
+export AIRFLOW__CORE__HOSTNAME_CALLABLE="${HOSTNAME_CALLABLE:-socket.getfqdn}"
 
 mkdir -p /etc/supervisor/conf.d
 
