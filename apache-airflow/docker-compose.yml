@@ -23,8 +23,6 @@ services:
           - AIRFLOW_MODE=webserver
           - AIRFLOW_AUTHENTICATE=False
           - LOCAL_DAGS_ONLY=yes
-        volumes:
-          - ./start-airflow.sh:/usr/local/bin/start-airflow.sh
         env_file:
           - dev.env
         ports:
