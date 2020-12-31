@@ -90,6 +90,34 @@ workflows:
             tags:
               only: /^v.*/
       - ivy-circleci-orb/build_docker:
+          name: ruby
+          requires:
+            - base
+          working_directory: ruby/
+          container_name: ruby
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: ruby-jemalloc
+          requires:
+            - base
+          working_directory: ruby-jemalloc/
+          container_name: ruby-jemalloc
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
           name: apache-airflow
           requires:
             - python37
