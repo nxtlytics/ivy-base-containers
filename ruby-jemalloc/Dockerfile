@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.5
+FROM nxtlytics/base:v0.0.6-test-01
 
 ENV RUBY_INSTALL_VERSION=0.8.1
 ENV RUBY_VERSION=2.7.2
@@ -25,6 +25,8 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main m
     export GNU_ARCH="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" ; \
     curl -o "ruby-install-${RUBY_INSTALL_VERSION}.tar.gz" -L "https://github.com/postmodern/ruby-install/archive/v${RUBY_INSTALL_VERSION}.tar.gz" ; \
     tar -xzvf "ruby-install-${RUBY_INSTALL_VERSION}.tar.gz" ; \
+    apt clean all ; \
+    rm -rf /var/log/apt/* /var/log/alternatives.log /var/log/bootstrap.log /var/log/dpkg.log "/app/ruby-install-${RUBY_INSTALL_VERSION}.tar.gz" ; \
     cd "ruby-install-${RUBY_INSTALL_VERSION}/" ; \
     make install ; \
     hash -r ; \

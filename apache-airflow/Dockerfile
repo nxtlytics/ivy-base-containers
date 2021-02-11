@@ -1,4 +1,4 @@
-FROM nxtlytics/python37:v0.0.5
+FROM nxtlytics/python37:v0.0.6-test-01
 
 # Airflow
 ENV AIRFLOW_USER_HOME=/usr/local/airflow
@@ -46,7 +46,7 @@ RUN set -ex \
     && su airflow -l -c 'pipenv sync' \
     && apt purge --auto-remove -yqq ${buildDeps} \
     && apt autoremove -yqq --purge \
-    && apt clean \
+    && apt clean all \
     && rm -rf \
         /var/lib/apt/lists/* \
         /tmp/* \
