@@ -4,12 +4,13 @@
 # - Base APT repos for Nexus
 # Ensure this image is built with --squash to reduce layer bloat!
 
-FROM ubuntu:focal-20210119
+FROM ubuntu:focal-20210401
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 ENV TERM=linux
+ADD 01_nodoc /etc/dpkg/dpkg.conf.d/01_nodoc
 
 # Ensure system is up to date and install nice utilities to have
 RUN apt update && \
@@ -18,7 +19,17 @@ RUN apt update && \
         curl \
         wget \
         vim-common \
-        software-properties-common
+        software-properties-common && \
+    apt autoremove -yqq --purge && \
+    apt clean all && \
+    rm -rf \
+      /var/lib/apt/lists/* \
+      /var/log/apt/* \
+      /var/log/alternatives.log \
+      /var/log/bootstrap.log \
+      /var/log/dpkg.log \
+      /var/tmp/* \
+      /tmp/*
 
 # Make directory for utilities and applications
 RUN mkdir /opt/ivy && mkdir /app

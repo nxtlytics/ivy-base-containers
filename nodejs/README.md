@@ -1,14 +1,14 @@
-# docker-base-node12
+# docker-base-nodejs
 
-A ubuntu-based Node.js 12 base container
+A ubuntu-based Node.js 14 base container
 
-[DockerHUB repository](https://hub.docker.com/r/nxtlytics/node12)
+[DockerHUB repository](https://hub.docker.com/r/nxtlytics/nodejs)
 
 ## How do I use this?
 
 In your `dockerfile`:
 ```
-FROM nxtlytics/node12:<pick a tag from hub.docker.com>
+FROM nxtlytics/nodejs:<pick a tag from hub.docker.com>
 
 # Add your source files
 ADD .
@@ -27,7 +27,7 @@ CMD node /app/dist/index.js
 
 Use this as a starting point for: 
 
-- Applications using Node.js 12 as their runtime
+- Applications using Node.js 14 as their runtime
 
 ## What should I not use this for?
 
