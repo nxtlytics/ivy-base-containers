@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@0.0.4
+  ivy-circleci-orb: nxtlytics/ivy-circleci-orb@0.0.5
 
 workflows:
   version: 2
@@ -34,11 +34,11 @@ workflows:
             tags:
               only: /^v.*/
       - ivy-circleci-orb/build_docker:
-          name: node12
+          name: nodejs
           requires:
             - base
-          working_directory: node12/
-          container_name: node12
+          working_directory: nodejs/
+          container_name: nodejs
           simple_docker_tag: true
           context: ivy
           filters:

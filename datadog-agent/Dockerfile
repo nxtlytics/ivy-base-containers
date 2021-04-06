@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.6
+FROM nxtlytics/base:v0.0.7-test-00
 
 ADD utils /opt/utils/
 RUN echo "===> Moving docker-entrypoint.sh to /usr/local/bin and making it exec" \
@@ -20,10 +20,18 @@ RUN echo "===> Moving docker-entrypoint.sh to /usr/local/bin and making it exec"
   && chmod -R 0644 "${RDS_CERTS_DIR}"/* \
   && update-ca-certificates \
   && echo "===> Installing ytt see https://get-ytt.io/" \
-  && curl -L 'https://github.com/k14s/ytt/releases/download/v0.27.1/ytt-linux-amd64' -o /usr/local/bin/ytt \
+  && curl -L 'https://github.com/vmware-tanzu/carvel-ytt/releases/download/v0.31.0/ytt-linux-amd64' -o /usr/local/bin/ytt \
   && chmod +x /usr/local/bin/ytt \
   && echo "===> Deleting temp files" \
+  && apt autoremove -yqq --purge \
   && apt clean all \
-  && rm -rf /var/log/apt/* /var/log/alternatives.log /var/log/bootstrap.log /var/log/dpkg.log
+  && rm -rf \
+      /var/lib/apt/lists/* \
+      /var/log/apt/* \
+      /var/log/alternatives.log \
+      /var/log/bootstrap.log \
+      /var/log/dpkg.log \
+      /var/tmp/* \
+      /tmp/*
 
 ENTRYPOINT ["docker-entrypoint.sh"]

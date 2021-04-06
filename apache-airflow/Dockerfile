@@ -1,4 +1,4 @@
-FROM nxtlytics/python37:v0.0.6
+FROM nxtlytics/python37:v0.0.7-test-00
 
 # Airflow
 ENV AIRFLOW_USER_HOME=/usr/local/airflow
@@ -49,11 +49,12 @@ RUN set -ex \
     && apt clean all \
     && rm -rf \
         /var/lib/apt/lists/* \
-        /tmp/* \
+        /var/log/apt/* \
+        /var/log/alternatives.log \
+        /var/log/bootstrap.log \
+        /var/log/dpkg.log \
         /var/tmp/* \
-        /usr/share/man \
-        /usr/share/doc \
-        /usr/share/doc-base
+        /tmp/*
 
 COPY *.sh /usr/local/bin/
 COPY airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
