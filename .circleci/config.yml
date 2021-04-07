@@ -118,6 +118,20 @@ workflows:
             tags:
               only: /^v.*/
       - ivy-circleci-orb/build_docker:
+          name: jdk
+          requires:
+            - base
+          working_directory: jdk/
+          container_name: jdk
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
           name: apache-airflow
           requires:
             - python37
@@ -137,6 +151,104 @@ workflows:
             - python38
           working_directory: jupyterhub-singleuser-base/
           container_name: jupyterhub-singleuser-base
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-jdk
+          requires:
+            - jdk
+          working_directory: jenkins/jdk/
+          container_name: jenkins-jdk
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-nodejs
+          requires:
+            - jenkins-jdk
+          working_directory: jenkins/nodejs/
+          container_name: jenkins-nodejs
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-python37
+          requires:
+            - jenkins-jdk
+          working_directory: jenkins/python37/
+          container_name: jenkins-python37
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-python38
+          requires:
+            - jenkins-jdk
+          working_directory: jenkins/python38/
+          container_name: jenkins-python38
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-python39
+          requires:
+            - jenkins-jdk
+          working_directory: jenkins/python39/
+          container_name: jenkins-python39
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-ruby
+          requires:
+            - jenkins-jdk
+          working_directory: jenkins/ruby/
+          container_name: jenkins-ruby
+          simple_docker_tag: true
+          context: ivy
+          filters:
+            branches:
+              ignore:
+                - /.*/
+            tags:
+              only: /^v.*/
+      - ivy-circleci-orb/build_docker:
+          name: jenkins-ruby-jemalloc
+          requires:
+            - jenkins-jdk
+          working_directory: jenkins/ruby-jemalloc/
+          container_name: jenkins-ruby-jemalloc
           simple_docker_tag: true
           context: ivy
           filters:
