@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.7-test-00
+FROM nxtlytics/base:v0.0.7-test-01
 
 # Ensure system is up to date and install tools
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/focal-proposed.list && \

@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.7-test-00
+FROM nxtlytics/base:v0.0.7-test-01
 
 # Install tools
 RUN curl -sL https://deb.nodesource.com/setup_14.x -o /tmp/nodesource_setup.sh && \
