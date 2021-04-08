@@ -1,9 +1,10 @@
-FROM nxtlytics/base:v0.0.7-test-01
+FROM nxtlytics/jenkins-jdk:v0.0.7-test-01
 
 ENV RUBY_INSTALL_VERSION=0.8.1
-ENV RUBY_VERSION=2.7.2
+ENV TRUFFLERUBY_VERSION=21.0.0
 
 # Ensure system is up to date and install tools
+ENV PATH "/opt/bin:${PATH}"
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/focal-proposed.list && \
     apt update && \
     apt install -y \
@@ -22,11 +23,12 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main m
         libssl-dev \
         libyaml-dev \
         zlib1g-dev && \
-    mkdir -p /usr/local/etc && \
+    echo "PATH=\"/opt/bin:${PATH}\"" > /etc/environment && \
+    mkdir -p /opt/etc && \
     { \
 		echo 'install: --no-document'; \
 		echo 'update: --no-document'; \
-	} >> /usr/local/etc/gemrc && \
+	} >> /opt/etc/gemrc && \
     export GNU_ARCH="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)" && \
     curl -o "ruby-install-${RUBY_INSTALL_VERSION}.tar.gz" -L "https://github.com/postmodern/ruby-install/archive/v${RUBY_INSTALL_VERSION}.tar.gz" && \
     tar -xzvf "ruby-install-${RUBY_INSTALL_VERSION}.tar.gz" && \
@@ -34,11 +36,9 @@ RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main m
     rm -rf /var/log/apt/* /var/log/alternatives.log /var/log/bootstrap.log /var/log/dpkg.log "/app/ruby-install-${RUBY_INSTALL_VERSION}.tar.gz" && \
     cd "ruby-install-${RUBY_INSTALL_VERSION}/" && \
     make install && \
-    hash -r && \
     cd - && \
-    ruby-install -j "$(nproc)" --system ruby "${RUBY_VERSION}" -- --enable-shared --disable-install-doc --build="${GNU_ARCH}" --with-jemalloc && \
-    gem update --system && \
-    gem update && \
+    hash -r && \
+    ruby-install -j "$(nproc)" --install-dir /opt/ truffleruby-graalvm "${TRUFFLERUBY_VERSION}" && \
     ruby --version && \
     gem --version && \
     bundle --version && \

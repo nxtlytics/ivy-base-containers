@@ -17,6 +17,7 @@ RUN apt update && \
     apt install -y \
         iputils-ping \
         curl \
+        unzip \
         wget \
         vim-common \
         software-properties-common && \
