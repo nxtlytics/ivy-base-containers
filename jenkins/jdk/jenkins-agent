@@ -44,6 +44,10 @@ if [ $# -eq 1 ]; then
 
 else
 
+    DOCKER_GID="$(stat -c %g /var/run/docker.sock)"
+    groupadd -g $DOCKER_GID docker
+    usermod -a -G docker jenkins
+
 	# if -tunnel is not provided, try env vars
 	case "$@" in
 		*"-tunnel "*) ;;
@@ -115,5 +119,5 @@ else
 	#It is fine it blows up for now since it should lead to an error anyway.
 
     curl -fsS --retry 100 --retry-delay 5 "$JENKINS_URL/jnlpJars/agent.jar" -o /tmp/agent.jar
-	exec $JAVA_BIN $JAVA_OPTS -cp /tmp/agent.jar hudson.remoting.jnlp.Main -headless $TUNNEL $URL $WORKDIR $WEB_SOCKET $DIRECT $PROTOCOLS $INSTANCE_IDENTITY $OPT_JENKINS_SECRET $OPT_JENKINS_AGENT_NAME "$@"
+	su jenkins -l -c "$JAVA_BIN $JAVA_OPTS -cp /tmp/agent.jar hudson.remoting.jnlp.Main -headless $TUNNEL $URL $WORKDIR $WEB_SOCKET $DIRECT $PROTOCOLS $INSTANCE_IDENTITY $OPT_JENKINS_SECRET $OPT_JENKINS_AGENT_NAME $@"
 fi
