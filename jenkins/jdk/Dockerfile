@@ -53,6 +53,7 @@ RUN echo '===> Make jenkins-agent executable' && \
       -o /tmp/terraform.zip && \
     unzip /tmp/terraform.zip -d /usr/local/bin/ && \
     chmod +x /usr/local/bin/terraform && \
+    terraform --version && \
     echo '===> Installing jmeter and plugins' && \
     curl -sL https://apache.ip-connect.vn.ua//jmeter/binaries/apache-jmeter-5.2.1.tgz -o /opt/jmeter.tgz && \
     tar -xzvf /opt/jmeter.tgz -C /opt/ && \
