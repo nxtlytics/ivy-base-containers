@@ -125,7 +125,8 @@ case "$1" in
         AIRFLOW__API__AUTH_BACKEND="airflow.api.auth.backend.default" \
         AIRFLOW__WEBSERVER__RBAC="False"
     fi
-    airflow db init
+    exec airflow db upgrade
+    exec airflow users  create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin
     exec airflow webserver
     ;;
   scheduler)

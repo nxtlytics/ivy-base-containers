@@ -5,7 +5,7 @@ test = "python -m pytest -v --junitxml=tmp/test-output/pytest.xml"
 airflow = "start-airflow.sh"
 
 [packages]
-apache-airflow = {extras = ["amazon", "cassandra", "celery", "crypto", "datadog", "docker", "flask_oauth", "google", "google_auth", "grpc", "hive", "jdbc", "kubernetes", "mysql", "postgres", "presto", "redis", "sentry", "slack", "spark", "ssh", "statsd", "virtualenv"], version = "==2.0.0"}
+apache-airflow = {extras = ["amazon", "cassandra", "celery", "crypto", "datadog", "docker", "flask_oauth", "google_auth", "grpc", "hive", "jdbc", "kubernetes", "postgres", "presto", "redis", "sentry", "slack", "spark", "ssh", "statsd", "virtualenv"], version = "==2.0.1"}
 pytz = "*"
 pyopenssl = "*"
 ndg-httpsclient = "*"

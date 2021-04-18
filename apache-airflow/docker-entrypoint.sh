@@ -23,8 +23,8 @@ export AIRFLOW__GOOGLE__CLIENT_ID="${OAUTH_CLIENT_ID:-nothing}"
 export AIRFLOW__GOOGLE__CLIENT_SECRET="${OAUTH_CLIENT_SECRET:-nothing}"
 export AIRFLOW__GOOGLE__OAUTH_CALLBACK_ROUTE="${OAUTH_CALLBACK_ROUTE:-/oauth2callback}"
 export AIRFLOW__GOOGLE__DOMAIN="${GOOGLE_DOMAINS:-example1.com,example2.com}"
-export AIRFLOW__CORE__LOGGING_CONFIG_CLASS="${LOGGING_CONFIG_CLASS:-airflow.config_templates.airflow_local_settings.DEFAULT_LOGGING_CONFIG}"
-export AIRFLOW__CORE__HOSTNAME_CALLABLE="${HOSTNAME_CALLABLE:-socket:getfqdn}"
+export AIRFLOW__LOGGING__LOGGING_CONFIG_CLASS="${LOGGING_CONFIG_CLASS:-airflow.config_templates.airflow_local_settings.DEFAULT_LOGGING_CONFIG}"
+export AIRFLOW__CORE__HOSTNAME_CALLABLE="${HOSTNAME_CALLABLE:-socket.getfqdn}"
 
 # Configure SENTRY
 SENTRY_DSN="${SENTRY_DSN:-you-need-to-specify-a-sentry-dsn}"
