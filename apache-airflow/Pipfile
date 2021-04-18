@@ -1,11 +1,11 @@
 [scripts]
-lint = "python -m black --target-version py37 --line-length 120 --check ."
-lint-fix = "python -m black --target-version py37 --line-length 120 ."
+lint = "python -m black --target-version py38 --line-length 120 --check ."
+lint-fix = "python -m black --target-version py38 --line-length 120 ."
 test = "python -m pytest -v --junitxml=tmp/test-output/pytest.xml"
 airflow = "start-airflow.sh"
 
 [packages]
-apache-airflow = {extras = ["amazon", "cassandra", "celery", "crypto", "datadog", "docker", "flask_oauth", "google", "google_auth", "grpc", "hive", "jdbc", "kubernetes", "postgres", "presto", "redis", "sentry", "slack", "spark", "ssh", "statsd", "virtualenv"], version = "==1.10.10"}
+apache-airflow = {extras = ["amazon", "cassandra", "celery", "crypto", "datadog", "docker", "flask_oauth", "google", "google_auth", "grpc", "hive", "jdbc", "kubernetes", "mysql", "postgres", "presto", "redis", "sentry", "slack", "spark", "ssh", "statsd", "virtualenv"], version = "==2.0.0"}
 pytz = "*"
 pyopenssl = "*"
 ndg-httpsclient = "*"
@@ -15,7 +15,7 @@ protobuf = "*"
 
 [dev-packages]
 pytest = "*"
-black = "==19.3b0"
+black = "==20.8b1"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

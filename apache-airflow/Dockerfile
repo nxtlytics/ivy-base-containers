@@ -1,4 +1,4 @@
-FROM nxtlytics/python37:v0.0.7-test-03
+FROM nxtlytics/python38:v0.0.7-test-03
 
 # Airflow
 ENV AIRFLOW_USER_HOME=/usr/local/airflow
@@ -21,6 +21,7 @@ RUN set -ex \
         libssl-dev \
         libffi-dev \
         libpq-dev \
+        libmysqlclient-dev \
     ' \
     && apt update -yqq \
     && apt dist-upgrade -yqq \
@@ -57,8 +58,6 @@ RUN set -ex \
         /tmp/*
 
 COPY *.sh /usr/local/bin/
-COPY airflow.cfg ${AIRFLOW_USER_HOME}/airflow.cfg
-COPY config ${AIRFLOW_USER_HOME}/config/
 
 EXPOSE 8080 5555 8793
 
