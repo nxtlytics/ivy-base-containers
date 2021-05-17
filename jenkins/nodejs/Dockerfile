@@ -1,8 +1,9 @@
-FROM nxtlytics/jenkins-jdk:v0.0.7-test-04
+FROM nxtlytics/jenkins-jdk:v0.0.7-test-05
 
 # Install tools
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt update && \
     apt install -y yarn && \
     apt autoremove -yqq --purge && \
     apt clean all && \
