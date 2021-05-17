@@ -1,4 +1,4 @@
-FROM nxtlytics/jenkins-jdk:v0.0.7-test-03
+FROM nxtlytics/jenkins-jdk:v0.0.7-test-04
 
 ENV RUBY_INSTALL_VERSION=0.8.1
 ENV RUBY_VERSION=2.7.2

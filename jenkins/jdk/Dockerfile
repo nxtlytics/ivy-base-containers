@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.7-test-03
+FROM nxtlytics/jdk:v0.0.7-test-04
 
 ENV user=jenkins
 ENV group=jenkins
@@ -17,6 +17,10 @@ RUN echo '===> Make jenkins-agent executable' && \
     useradd -c "Jenkins user" -d /home/${user} -u ${uid} -g ${gid} -m ${user} && \
     mkdir /home/${user}/.jenkins && mkdir -p ${AGENT_WORKDIR} && \
     chown -R jenkins: /home/${user} && \
+    echo '===> Installing nodejs apt repository' && \
+    curl -sL https://deb.nodesource.com/setup_14.x -o /tmp/nodesource_setup.sh && \
+    bash /tmp/nodesource_setup.sh && \
+    apt install -y nodejs && \
     echo '===> Installing apt dependencies' && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64 && \
     add-apt-repository ppa:rmescandon/yq && \
