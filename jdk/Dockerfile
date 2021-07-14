@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.7-test-05
+FROM nxtlytics/base:v0.0.7
 
 ARG JAVA_MAJOR_VERSION=11
 ENV MAVEN_HOME=/usr/share/maven
