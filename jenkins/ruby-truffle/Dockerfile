@@ -1,4 +1,4 @@
-FROM nxtlytics/jenkins-jdk:v0.0.7-test-06
+FROM nxtlytics/jenkins-jdk:v0.0.7-test-07
 
 ENV RUBY_INSTALL_VERSION=0.8.1
 ENV TRUFFLERUBY_VERSION=21.0.0

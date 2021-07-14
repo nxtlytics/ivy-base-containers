@@ -1,4 +1,4 @@
-FROM nxtlytics/python37:v0.0.7-test-06
+FROM nxtlytics/python37:v0.0.7-test-07
 
 # Airflow
 ENV AIRFLOW_USER_HOME=/usr/local/airflow

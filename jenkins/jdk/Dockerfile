@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.7-test-06
+FROM nxtlytics/jdk:v0.0.7-test-07
 
 ENV user=jenkins
 ENV group=jenkins
@@ -24,7 +24,7 @@ RUN echo '===> Make jenkins-agent executable' && \
     echo '===> Installing apt dependencies' && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64 && \
     apt update && \
-    apt install -y git-lfs jq python3-setuptools yq && \
+    apt install -y git-lfs jq python3-setuptools && \
     echo '===> Installing python pip' && \
     curl -sL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py && \
     python3.8 /tmp/get-pip.py && \
@@ -41,7 +41,7 @@ RUN echo '===> Make jenkins-agent executable' && \
       "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64" \
       -o /usr/local/bin/yq && \
     chmod +x /usr/local/bin/yq && \
-    /usr/local/bin/yq --version && \
+    yq --version && \
     echo '===> Installing docker-compose' && \
     DOCKER_COMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r .tag_name)" && \
     curl -sL \

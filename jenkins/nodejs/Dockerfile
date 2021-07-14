@@ -1,4 +1,4 @@
-FROM nxtlytics/jenkins-jdk:v0.0.7-test-06
+FROM nxtlytics/jenkins-jdk:v0.0.7-test-07
 
 # Install tools
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
