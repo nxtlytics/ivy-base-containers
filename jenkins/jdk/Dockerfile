@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.7
+FROM nxtlytics/jdk:v0.0.7-test-06
 
 ENV user=jenkins
 ENV group=jenkins
@@ -41,7 +41,7 @@ RUN echo '===> Make jenkins-agent executable' && \
       "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64" \
       -o /usr/local/bin/yq && \
     chmod +x /usr/local/bin/yq && \
-    yq --version && \
+    /usr/local/bin/yq --version && \
     echo '===> Installing docker-compose' && \
     DOCKER_COMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r .tag_name)" && \
     curl -sL \
