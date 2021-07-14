@@ -14,7 +14,7 @@ services:
         #   - ./pgdata:/var/lib/postgresql/data/pgdata
 
     webserver:
-        image: nxtlytics/apache-airflow:v0.0.7-test-08
+        image: nxtlytics/apache-airflow:v0.0.7-test-09
         restart: always
         depends_on:
           - postgres
@@ -33,7 +33,7 @@ services:
             retries: 3
 
     flower:
-        image: nxtlytics/apache-airflow:v0.0.7-test-08
+        image: nxtlytics/apache-airflow:v0.0.7-test-09
         restart: always
         depends_on:
           - redis
@@ -45,7 +45,7 @@ services:
           - "5555:5555"
 
     scheduler:
-        image: nxtlytics/apache-airflow:v0.0.7-test-08
+        image: nxtlytics/apache-airflow:v0.0.7-test-09
         restart: always
         depends_on:
           - webserver
@@ -55,7 +55,7 @@ services:
           - dev.env
 
     worker:
-        image: nxtlytics/apache-airflow:v0.0.7-test-08
+        image: nxtlytics/apache-airflow:v0.0.7-test-09
         restart: always
         depends_on:
           - scheduler

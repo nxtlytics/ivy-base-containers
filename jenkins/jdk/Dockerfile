@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.7-test-08
+FROM nxtlytics/jdk:v0.0.7-test-09
 
 ENV user=jenkins
 ENV group=jenkins
@@ -65,7 +65,7 @@ RUN echo '===> Make jenkins-agent executable' && \
     chmod +x /usr/local/bin/terraform && \
     terraform --version && \
     echo '===> Installing jmeter and plugins' && \
-    curl -sL https://apache.ip-connect.vn.ua//jmeter/binaries/apache-jmeter-5.2.1.tgz -o /opt/jmeter.tgz && \
+    curl -sL 'https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.2.1.tgz' -o /opt/jmeter.tgz && \
     echo '====> untar jmeter.tgz' && \
     tar -xzvf /opt/jmeter.tgz -C /opt/ && \
     echo '====> untar moving jmeter to /opt/jmeter' && \
