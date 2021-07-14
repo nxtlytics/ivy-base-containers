@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.7-test-07
+FROM nxtlytics/jdk:v0.0.7-test-08
 
 ENV user=jenkins
 ENV group=jenkins
@@ -57,20 +57,26 @@ RUN echo '===> Make jenkins-agent executable' && \
     unzip /tmp/packer.zip -d /usr/local/bin/ && \
     chmod +x /usr/local/bin/packer && \
     packer --version && \
-    echo '===> Installing terraform 0.12.28' && \
+    echo '===> Installing terraform 0.12.31' && \
     curl -sL \
-      "https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip" \
+      "https://releases.hashicorp.com/terraform/0.12.31/terraform_0.12.31_linux_amd64.zip" \
       -o /tmp/terraform.zip && \
     unzip /tmp/terraform.zip -d /usr/local/bin/ && \
     chmod +x /usr/local/bin/terraform && \
     terraform --version && \
     echo '===> Installing jmeter and plugins' && \
     curl -sL https://apache.ip-connect.vn.ua//jmeter/binaries/apache-jmeter-5.2.1.tgz -o /opt/jmeter.tgz && \
+    echo '====> untar jmeter.tgz' && \
     tar -xzvf /opt/jmeter.tgz -C /opt/ && \
+    echo '====> untar moving jmeter to /opt/jmeter' && \
     mv -f /opt/apache-jmeter-5.2.1* /opt/jmeter && \
+    echo '====> linking /opt/jmeter/bin/jmeter to /usr/bin/jmeter' && \
     ln -s /opt/jmeter/bin/jmeter /usr/bin/jmeter && \
+    echo '====> downloading jmeter-plugins' && \
     curl -sL https://jmeter-plugins.org/files/packages/jpgc-casutg-2.9.zip -o /opt/jmeter-plugins.zip && \
+    echo '====> unzip jmeter-plugins' && \
     unzip /opt/jmeter-plugins.zip -d /opt && cp -r /opt/lib /opt/jmeter/ && \
+    echo '====> Removing jmeter.tgz and jmeter-plugins.zip' && \
     rm -rf /opt/lib /opt/jmeter.tgz /opt/jmeter-plugins.zip && \
     echo '===> Installing awscli v2' && \
     curl -sL 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip' -o /tmp/awscli-exe-linux-x86_64.zip && \
