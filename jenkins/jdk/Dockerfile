@@ -23,7 +23,6 @@ RUN echo '===> Make jenkins-agent executable' && \
     apt install -y nodejs && \
     echo '===> Installing apt dependencies' && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys CC86BB64 && \
-    add-apt-repository ppa:rmescandon/yq && \
     apt update && \
     apt install -y git-lfs jq python3-setuptools yq && \
     echo '===> Installing python pip' && \
@@ -36,6 +35,13 @@ RUN echo '===> Make jenkins-agent executable' && \
       PyGithub \
       pytz \
       requests && \
+    echo '===> Installing yq' && \
+    YQ_VERSION="$(curl -s 'https://api.github.com/repos/mikefarah/yq/releases/latest' | jq -r .tag_name)" && \
+    curl -sL \
+      "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64" \
+      -o /usr/local/bin/yq && \
+    chmod +x /usr/local/bin/yq && \
+    yq --version && \
     echo '===> Installing docker-compose' && \
     DOCKER_COMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r .tag_name)" && \
     curl -sL \
