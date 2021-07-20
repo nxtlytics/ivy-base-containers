@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.7-test-09
+FROM nxtlytics/base:v0.0.7
 
 # Install tools
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
