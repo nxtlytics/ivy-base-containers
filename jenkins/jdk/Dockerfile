@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.7
+FROM nxtlytics/jdk:v0.0.8-test-1
 
 ENV user=jenkins
 ENV group=jenkins
@@ -35,6 +35,15 @@ RUN echo '===> Make jenkins-agent executable' && \
       PyGithub \
       pytz \
       requests && \
+    echo '===> Installing reviewdog' && \
+    REVIEWDOG_VERSION="$(curl -s 'https://api.github.com/repos/reviewdog/reviewdog/releases/latest' | jq -r .tag_name | tr -d 'v')" && \
+    curl -sL \
+      "https://github.com/reviewdog/reviewdog/releases/download/v${REVIEWDOG_VERSION}/reviewdog_${REVIEWDOG_VERSION}_Linux_x86_64.tar.gz" \
+      -o /tmp/reviewdog.tar.gz && \
+    tar -xzvf /tmp/reviewdog.tar.gz -C /tmp/ && \
+    mv /tmp/reviewdog /usr/local/bin/reviewdog && \
+    chmod +x /usr/local/bin/reviewdog && \
+    reviewdog --version && \
     echo '===> Installing yq' && \
     YQ_VERSION="$(curl -s 'https://api.github.com/repos/mikefarah/yq/releases/latest' | jq -r .tag_name)" && \
     curl -sL \
