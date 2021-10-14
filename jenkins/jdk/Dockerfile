@@ -6,6 +6,7 @@ ENV uid=1000
 ENV gid=1000
 ENV AGENT_WORKDIR=/home/${user}/agent
 ENV DOCKER_VERSION=20.10.5
+ENV DOCKER_COMPOSE_VERSION=1.29.2
 ENV KUBECTL_VERSION=v1.22.0
 ENV KOMPOSE_VERSION=v1.22.0
 
@@ -69,7 +70,7 @@ RUN echo '===> Make jenkins-agent executable' && \
     chmod +x /usr/local/bin/kompose && \
     kompose version && \
     echo '===> Installing docker-compose' && \
-    DOCKER_COMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r .tag_name)" && \
+    #DOCKER_COMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r .tag_name)" && \
     curl -sL \
       "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
       -o /usr/local/bin/docker-compose && \
