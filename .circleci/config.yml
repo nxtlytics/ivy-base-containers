@@ -146,20 +146,6 @@ workflows:
             tags:
               only: /^v.*/
       - ivy-circleci-orb/build_docker:
-          name: apache-airflow
-          requires:
-            - python37
-          working_directory: apache-airflow/
-          container_name: apache-airflow
-          simple_docker_tag: true
-          context: ivy
-          filters:
-            branches:
-              ignore:
-                - /.*/
-            tags:
-              only: /^v.*/
-      - ivy-circleci-orb/build_docker:
           name: jupyterhub-singleuser-base
           requires:
             - python38

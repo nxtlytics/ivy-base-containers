@@ -1,3 +1,9 @@
+# *NOTE:* this container is not being built at the moment
+
+Last built version is `nxtlytics/apache-airflow:v0.0.8`
+
+Error seems to be with python version `3.7.12`, python `3.7.11` has no issues
+
 # Apache Airflow
 
 [DocherHUB repository](https://hub.docker.com/r/nxtlytics/apache-airflow)
