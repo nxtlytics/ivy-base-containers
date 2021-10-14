@@ -1,4 +1,4 @@
-FROM nxtlytics/jenkins-jdk:v0.0.9-test02
+FROM nxtlytics/jenkins-jdk:v0.0.9
 
 # Ensure system is up to date and install tools
 RUN echo 'deb http://archive.ubuntu.com/ubuntu/ focal-proposed restricted main multiverse universe' > /etc/apt/sources.list.d/focal-proposed.list && \

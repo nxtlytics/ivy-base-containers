@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.9-test02
+FROM nxtlytics/jdk:v0.0.9
 
 ENV user=jenkins
 ENV group=jenkins
@@ -34,6 +34,7 @@ RUN echo '===> Make jenkins-agent executable' && \
     python3.8 -m pip install \
       boto3 \
       jira \
+      prefect \
       PyGithub \
       pytz \
       requests && \
