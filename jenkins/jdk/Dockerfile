@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.9-test01
+FROM nxtlytics/jdk:v0.0.9-test02
 
 ENV user=jenkins
 ENV group=jenkins

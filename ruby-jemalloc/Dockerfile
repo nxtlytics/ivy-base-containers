@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.9-test01
+FROM nxtlytics/base:v0.0.9-test02
 
 ENV RUBY_INSTALL_VERSION=0.8.1
 ENV RUBY_VERSION=2.7.2
