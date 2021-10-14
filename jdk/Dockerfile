@@ -1,10 +1,10 @@
-FROM nxtlytics/base:v0.0.9-test00
+FROM nxtlytics/base:v0.0.9-test01
 
 ARG JAVA_MAJOR_VERSION=11
 ENV MAVEN_HOME=/usr/share/maven
 ARG MAVEN_VERSION=3.8.1
 ARG MAVEN_SHA=0ec48eb515d93f8515d4abe465570dfded6fa13a3ceb9aab8031428442d9912ec20f066b2afbf56964ffe1ceb56f80321b50db73cf77a0e2445ad0211fb8e38d
-ARG MAVEN_BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
+ARG MAVEN_BASE_URL=https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries
 ENV GRADLE_HOME=/opt/gradle
 ARG GRADLE_VERSION=6.8.3
 ARG GRADLE_DOWNLOAD_SHA256=7faa7198769f872826c8ef4f1450f839ec27f0b4d5d1e51bade63667cbccd205
