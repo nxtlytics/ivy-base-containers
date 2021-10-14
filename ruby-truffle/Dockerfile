@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.9
+FROM nxtlytics/base:v0.0.11
 
 ENV RUBY_INSTALL_VERSION=0.8.1
 ENV TRUFFLERUBY_VERSION=21.0.0

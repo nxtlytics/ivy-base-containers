@@ -1,4 +1,4 @@
-FROM nxtlytics/python38:v0.0.9
+FROM nxtlytics/python38:v0.0.11
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \

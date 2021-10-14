@@ -1,4 +1,4 @@
-FROM nxtlytics/base:v0.0.9
+FROM nxtlytics/base:v0.0.11
 
 ADD utils /opt/utils/
 RUN echo "===> Moving docker-entrypoint.sh to /usr/local/bin and making it exec" \
