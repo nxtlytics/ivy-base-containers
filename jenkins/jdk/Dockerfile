@@ -1,4 +1,4 @@
-FROM nxtlytics/jdk:v0.0.8
+FROM nxtlytics/jdk:v0.0.9-test00
 
 ENV user=jenkins
 ENV group=jenkins
@@ -6,6 +6,8 @@ ENV uid=1000
 ENV gid=1000
 ENV AGENT_WORKDIR=/home/${user}/agent
 ENV DOCKER_VERSION=20.10.5
+ENV KUBECTL_VERSION=v1.22.0
+ENV KOMPOSE_VERSION=v1.22.0
 
 # Ensure system is up to date and install tools
 COPY jenkins-agent /usr/local/bin/jenkins-agent
@@ -51,6 +53,20 @@ RUN echo '===> Make jenkins-agent executable' && \
       -o /usr/local/bin/yq && \
     chmod +x /usr/local/bin/yq && \
     yq --version && \
+    echo '===> Installing kubectl' && \
+    #KUBECTL_VERSION="$(curl -sL https://dl.k8s.io/release/stable.txt)" && \
+    curl -sL \
+      "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl" \
+      -o /usr/local/bin/kubectl && \
+    chmod +x /usr/local/bin/kubectl && \
+    kubectl --help && \
+    echo '===> Installing kompose' && \
+    #KOMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/kubernetes/kompose/releases/latest' | jq -r .tag_name)" && \
+    curl -sL \
+      "https://github.com/kubernetes/kompose/releases/download/${KOMPOSE_VERSION}/kompose-linux-amd64" \
+      -o /usr/local/bin/kompose && \
+    chmod +x /usr/local/bin/kompose && \
+    kompose version && \
     echo '===> Installing docker-compose' && \
     DOCKER_COMPOSE_VERSION="$(curl -s 'https://api.github.com/repos/docker/compose/releases/latest' | jq -r .tag_name)" && \
     curl -sL \
